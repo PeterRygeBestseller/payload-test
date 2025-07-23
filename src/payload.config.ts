@@ -38,5 +38,6 @@ export default buildConfig({
   localization: {
     locales: ['en', 'da', 'de'],
     defaultLocale: 'en',
+    fallback: false,
   },
 })

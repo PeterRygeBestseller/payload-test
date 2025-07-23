@@ -6,7 +6,7 @@ export const Page: CollectionConfig = {
     read: () => true,
   },
   admin: {
-    useAsTitle: 'newTitle',
+    useAsTitle: 'title',
   },
   versions: {
     drafts: true,
@@ -25,42 +25,23 @@ export const Page: CollectionConfig = {
       type: 'text',
       required: true,
       localized: true,
-    }, 
+    },
     {
-      name: 'values',
-      type: 'array',
-      localized: true,
+      name: 'content',
+      type: 'group',
       fields: [
         {
-          name: 'value',
-          type: 'text',
+          name: 'values',
+          type: 'array',
+          localized: true,
+          fields: [
+            {
+              name: 'value',
+              type: 'text',
+            },
+          ],
         },
       ],
-    },
-    {
-      name: 'parent',
-      label: 'Parent',
-      type: 'relationship',
-      relationTo: 'page',
-      localized: true,
-    },
-    {
-      name: 'newTitle',
-      label: 'New Title',
-      type: 'text',
-      localized: true,
-      hooks: {
-        beforeChange: [
-          async ({ siblingData }) => {
-            return `${siblingData?.title} - ${siblingData.slug}`
-          },
-        ],
-        afterRead: [
-          async ({ siblingData }) => {
-            return `${siblingData.title} - ${siblingData.slug}`
-          },
-        ],
-      },
     },
   ],
 }

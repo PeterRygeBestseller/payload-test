@@ -166,14 +166,14 @@ export interface Page {
   id: string;
   slug: string;
   title: string;
-  values?:
-    | {
-        value?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  parent?: (string | null) | Page;
-  newTitle?: string | null;
+  content?: {
+    values?:
+      | {
+          value?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -286,14 +286,16 @@ export interface MediaSelect<T extends boolean = true> {
 export interface PageSelect<T extends boolean = true> {
   slug?: T;
   title?: T;
-  values?:
+  content?:
     | T
     | {
-        value?: T;
-        id?: T;
+        values?:
+          | T
+          | {
+              value?: T;
+              id?: T;
+            };
       };
-  parent?: T;
-  newTitle?: T;
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
